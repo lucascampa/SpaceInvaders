@@ -401,7 +401,7 @@ class HomeScreen(pygame.sprite.Sprite):
         """Updates the HOME screen.
         
         - Checks if a game has started
-        - Highlights a button when the mouse is over it
+        - Highlights a button when the mouse hovers over it
         - Makes the start button text blink"""
         
         # If a game starts, resets gameplay variables and counts a new match
@@ -654,7 +654,7 @@ class Settings(pygame.sprite.Sprite):
     def update(self):
         """Updates the SETTINGS screen.
         
-        Highlights a button when the mouse is over it."""
+        Highlights a button when the mouse hovers over it."""
         
         self.mouse_position()
         
@@ -960,7 +960,7 @@ class Controls(pygame.sprite.Sprite):
     def update(self):
         """Updates the CONTROLS screen.
         
-        Highlights the return button when the mouse is over it."""
+        Highlights the return button when the mouse hovers over it."""
         
         self.mouse_position()
 
@@ -1204,7 +1204,7 @@ class Statistics(pygame.sprite.Sprite):
         
         - Updates the sprite with the current statistics when the
         screen is open for the first time
-        - Highlights the return button when the mouse is over it"""
+        - Highlights the return button when the mouse hovers over it"""
         
         # Updates the statistics
         if self.open:
@@ -1309,6 +1309,7 @@ class Statistics(pygame.sprite.Sprite):
             # Once the screen is open, the boolean is set to False
             self.open = False
         
+        # Highlights a button when the mouse hovers over it
         self.mouse_position()
 
         mouse_over = False
@@ -1434,7 +1435,7 @@ class Pause(pygame.sprite.Sprite):
     def update(self):
         """Updates the PAUSE screen.
         
-        Highlights a button when the mouse is over it."""
+        Highlights a button when the mouse hovers over it."""
         
         self.mouse_position()
         
@@ -1547,6 +1548,8 @@ class GameOver(pygame.sprite.Sprite):
     - click()"""
     
     def __init__(self):
+        """Initiates the sprite."""
+
         pygame.sprite.Sprite.__init__(self)
 
         # Menu background
@@ -1631,8 +1634,8 @@ class GameOver(pygame.sprite.Sprite):
         that, should a new game start, brand new enemies are blitted to
         the screen.
         
-        On later calls, this highlights a button when the mouse is over
-        it."""
+        On later calls, this highlights a button when the mouse hovers
+        over it."""
         
         if not self.over:
             self.over = True
@@ -1807,7 +1810,7 @@ class QuitScreen(pygame.sprite.Sprite):
     def update(self):
         """Updates the QUIT GAME screen.
         
-        Highlights a button when the mouse is over it."""
+        Highlights a button when the mouse hovers over it."""
         
         self.mouse_position()
         
@@ -1874,6 +1877,7 @@ class ChangingDifficulty(pygame.sprite.Sprite):
     
     def __init__(self):
         """Initiates the sprite."""
+
         pygame.sprite.Sprite.__init__(self)
         
         # Menu background
@@ -1957,7 +1961,7 @@ class ChangingDifficulty(pygame.sprite.Sprite):
     def update(self):
         """Updates the QUIT GAME screen.
         
-        Highlights a button when the mouse is over it."""
+        Highlights a button when the mouse hovers over it."""
         
         self.mouse_position()
         
