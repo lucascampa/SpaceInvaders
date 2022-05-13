@@ -1634,7 +1634,7 @@ class GameOver(pygame.sprite.Sprite):
         On later calls, this highlights a button when the mouse is over
         it."""
         
-        if self.over == False:
+        if not self.over:
             self.over = True
             bullet.shot = False
             home_screen.game_start = False
@@ -2064,7 +2064,7 @@ try:
 
                         # Shoots the bullet
                         if event.key == pygame.K_SPACE and (
-                                bullet.shot == False):
+                                not bullet.shot):
                             bullet.shoot()
 
                         # Pauses the game
