@@ -466,8 +466,6 @@ class HomeScreen(pygame.sprite.Sprite):
                     
                 new_blits = self.buttons['blits'][:]
                 new_blits[i] = (image, rect)
-                new_blits[:i] = self.buttons['blits'][:i]
-                new_blits[i+1:] = self.buttons['blits'][i+1:]
                 self.image.fill(MENU_BACKGROUND)
                 self.image.blits(new_blits)
             else:
@@ -729,8 +727,6 @@ class Settings(pygame.sprite.Sprite):
             # highlighted button
             new_blits = self.buttons['blits'][:]
             new_blits[i] = (image, rect)
-            new_blits[:i] = self.buttons['blits'][:i]
-            new_blits[i+1:] = self.buttons['blits'][i+1:]
             self.image.fill(MENU_BACKGROUND)
             self.image.blits(new_blits)
         else:
@@ -1459,8 +1455,6 @@ class Pause(pygame.sprite.Sprite):
             # highlighted button
             new_blits = self.buttons['blits'][:]
             new_blits[i] = (image, rect)
-            new_blits[:i] = self.buttons['blits'][:i]
-            new_blits[i+1:] = self.buttons['blits'][i+1:]
             self.image.fill(MENU_BACKGROUND)
             self.image.blits(new_blits)
         else:
@@ -1680,8 +1674,6 @@ class GameOver(pygame.sprite.Sprite):
             # highlighted button
             new_blits = self.buttons['blits'][:]
             new_blits[i] = (image, rect)
-            new_blits[:i] = self.buttons['blits'][:i]
-            new_blits[i+1:] = self.buttons['blits'][i+1:]
             self.image.fill(MENU_BACKGROUND)
             self.image.blits(new_blits)
         else:
@@ -1827,8 +1819,6 @@ class QuitScreen(pygame.sprite.Sprite):
             # highlighted button
             new_blits = self.buttons['blits'][:]
             new_blits[i] = (image, rect)
-            new_blits[:i] = self.buttons['blits'][:i]
-            new_blits[i+1:] = self.buttons['blits'][i+1:]
             self.image.fill(MENU_BACKGROUND)
             self.image.blits(new_blits)
         else:
@@ -1978,8 +1968,6 @@ class ChangingDifficulty(pygame.sprite.Sprite):
             # highlighted button
             new_blits = self.buttons['blits'][:]
             new_blits[i] = (image, rect)
-            new_blits[:i] = self.buttons['blits'][:i]
-            new_blits[i+1:] = self.buttons['blits'][i+1:]
             self.image.fill(MENU_BACKGROUND)
             self.image.blits(new_blits)
         else:
@@ -2104,12 +2092,10 @@ try:
                 save_json = json.dumps(save_dict)
                 with open('save_file.json', 'w') as f:
                     f.write(save_json)
-                
                 sys.exit()
         
         render_sprites.update()
         render_sprites.draw(screen)
         pygame.display.update()
-        
 except SystemExit:
     pygame.quit()
