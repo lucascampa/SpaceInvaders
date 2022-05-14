@@ -1041,61 +1041,55 @@ class Statistics(pygame.sprite.Sprite):
         
         # Maximum score
         score_surface = stats_font.render('MAX SCORE ', True, WHITE)
-        self.score_rect = score_surface.get_rect()
-        height = self.score_rect.height
-        self.score_rect.left = self.rect.left
-        self.score_rect.top = title_rect.bottom + 6*height
-        self.blit_list.append((score_surface, self.score_rect)) # 2
+        score_rect = score_surface.get_rect()
+        height = score_rect.height
+        score_rect.left = self.rect.left
+        score_rect.top = title_rect.bottom + 6*height
+        self.blit_list.append((score_surface, score_rect)) # 2
         
         # Maximum score (easy)
         easy = str(save_dict['stats']['0']['max score'])
         easy_score_surface = self.val_font.render(easy, True, GREY)
         easy_score_rect = easy_score_surface.get_rect()
-        easy_score_rect.centery = self.score_rect.centery
-        easy_score_rect.left = self.score_rect.right + 30
         easy_score_rect.center = 289, 272
         self.blit_list.append((easy_score_surface, easy_score_rect)) # 3
         
         easy_surface = stats_font.render('EASY', True, WHITE)
         easy_rect = easy_surface.get_rect()
         easy_rect.centerx = easy_score_rect.centerx
-        easy_rect.bottom = self.score_rect.top
+        easy_rect.bottom = score_rect.top
         self.blit_list.append((easy_surface, easy_rect)) # 4
         
         # Maximum score (medium)
         medium = str(save_dict['stats']['1']['max score'])
         mid_score_surface = self.val_font.render(medium, True, GREY)
         mid_score_rect = mid_score_surface.get_rect()
-        mid_score_rect.top = easy_score_rect.top
-        mid_score_rect.left = easy_score_rect.right + 30
         mid_score_rect.center = 471, 272
         self.blit_list.append((mid_score_surface, mid_score_rect)) # 5
         
         mid_surface = stats_font.render('MEDIUM', True, WHITE)
         mid_rect = mid_surface.get_rect()
         mid_rect.centerx = mid_score_rect.centerx
-        mid_rect.bottom = self.score_rect.top
+        mid_rect.bottom = score_rect.top
         self.blit_list.append((mid_surface, mid_rect)) # 6
         
         # Maximum score (hard)
         hard = str(save_dict['stats']['2']['max score'])
         hard_score_surface = self.val_font.render(hard, True, GREY)
         hard_score_rect = hard_score_surface.get_rect()
-        hard_score_rect.top = mid_score_rect.top
-        hard_score_rect.left = mid_score_rect.right + 30
         hard_score_rect.center = 653, 272
         self.blit_list.append((hard_score_surface, hard_score_rect)) # 7
         
         hard_surface = stats_font.render('HARD', True, WHITE)
         hard_rect = hard_surface.get_rect()
         hard_rect.centerx = hard_score_rect.centerx
-        hard_rect.bottom = self.score_rect.top
+        hard_rect.bottom = score_rect.top
         self.blit_list.append((hard_surface, hard_rect)) # 8
         
         # Hit rate
         hit_surface = stats_font.render('HIT RATE ', True, WHITE)
         self.hit_rect = hit_surface.get_rect()
-        self.hit_rect.topleft = self.score_rect.bottomleft
+        self.hit_rect.topleft = score_rect.bottomleft
         self.blit_list.append((hit_surface, self.hit_rect)) # 9
         
         # Hit rate (easy)
@@ -1212,8 +1206,6 @@ class Statistics(pygame.sprite.Sprite):
             easy = str(save_dict['stats']['0']['max score'])
             easy_score_surface = self.val_font.render(easy, True, GREY)
             easy_score_rect = easy_score_surface.get_rect()
-            easy_score_rect.centery = self.score_rect.centery
-            easy_score_rect.left = self.score_rect.right + 30
             easy_score_rect.center = 289, 272
             self.blit_list[3] = (easy_score_surface, easy_score_rect)
             
@@ -2112,6 +2104,7 @@ try:
                 save_json = json.dumps(save_dict)
                 with open('save_file.json', 'w') as f:
                     f.write(save_json)
+                
                 sys.exit()
         
         render_sprites.update()
@@ -2120,4 +2113,3 @@ try:
         
 except SystemExit:
     pygame.quit()
-
