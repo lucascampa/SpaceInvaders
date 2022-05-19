@@ -4,6 +4,7 @@
 # In[2]:
 
 
+import os
 import sys
 import random
 import json
@@ -18,13 +19,18 @@ screen_rect = screen.get_rect()
 
 # Sets the title and the icon displayed on the window
 pygame.display.set_caption('Space Invaders')
-icon = pygame.image.load('ufo.png')
-pygame.display.set_icon(icon)
+
+# Modifies filepaths to the temporary folder created when running the .exe
+def get_path(filename):
+    if hasattr(sys, "_MEIPASS"):
+        return os.path.join(sys._MEIPASS, filename)
+    else:
+        return filename
 
 # Game background
-background = pygame.image.load('background.png').convert()
+background = pygame.image.load(get_path('background.png')).convert()
 
-FONT_FILE = 'Retro Gaming.ttf'
+FONT_FILE = get_path('Retro Gaming.ttf')
 
 MENU_BACKGROUND = (0, 0, 0, 127.5)
 WHITE = (255, 255, 255)
@@ -91,9 +97,9 @@ checkpoint = 0
 elapsed = 0
 
 # Sound
-mixer.music.load('background.wav')
-bullet_sound = mixer.Sound('laser.wav')
-collision_sound = mixer.Sound('explosion.wav')
+mixer.music.load(get_path('background.wav'))
+bullet_sound = mixer.Sound(get_path('laser.wav'))
+collision_sound = mixer.Sound(get_path('explosion.wav'))
 
 if sound_set:
     bullet_sound.set_volume(.0175)
@@ -124,7 +130,7 @@ class Player(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         
         # Icon
-        self.image = pygame.image.load('player.png').convert_alpha()
+        self.image = pygame.image.load(get_path('player.png')).convert_alpha()
         self.rect = self.image.get_rect()
         self.rect.midbottom = screen_rect.midbottom
         
@@ -171,7 +177,7 @@ class Bullet(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         
         # Icon
-        self.image = pygame.image.load('bullet.png').convert_alpha()
+        self.image = pygame.image.load(get_path('bullet.png')).convert_alpha()
         self.rect = self.image.get_rect()
         
         # Boolean to determine whether the bullet is in movement
@@ -235,7 +241,7 @@ class Enemy(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         
         # Icon
-        self.image = pygame.image.load('enemy.png').convert_alpha()
+        self.image = pygame.image.load(get_path('enemy.png')).convert_alpha()
         self.rect = self.image.get_rect()
         
         # The enemy's initial coordinates are randomly generated according to the difficulty set
@@ -896,7 +902,7 @@ class Controls(pygame.sprite.Sprite):
         controls_font = pygame.font.Font(FONT_FILE, 30)
         
         # Spacebar
-        space_surface = pygame.image.load('spacebar.png').convert_alpha()
+        space_surface = pygame.image.load(get_path('spacebar.png')).convert_alpha()
         space_surface = pygame.transform.scale(space_surface, (235*70.8/79, 70.8))
         space_rect = space_surface.get_rect()
         space_rect.left = self.rect.left
@@ -910,7 +916,7 @@ class Controls(pygame.sprite.Sprite):
         self.blit_list.append((text_surface, text_rect))
         
         # Left and right arrows
-        arrows_surface = pygame.image.load('arrow keys.png').convert_alpha()
+        arrows_surface = pygame.image.load(get_path('arrow keys.png')).convert_alpha()
         arrows_surface = pygame.transform.scale(arrows_surface, (144.3, 70.8))
         arrows_rect = arrows_surface.get_rect()
         arrows_rect.left = self.rect.left
@@ -924,7 +930,7 @@ class Controls(pygame.sprite.Sprite):
         self.blit_list.append((text_surface, text_rect))
         
         # ESC
-        esc_surface = pygame.image.load('esc.png').convert_alpha()
+        esc_surface = pygame.image.load(get_path('esc.png')).convert_alpha()
         esc_surface = pygame.transform.scale(esc_surface, (491*70.8/497, 70.8))
         esc_rect = esc_surface.get_rect()
         esc_rect.left = self.rect.left
@@ -2099,3 +2105,4 @@ try:
         pygame.display.update()
 except SystemExit:
     pygame.quit()
+
